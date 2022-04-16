@@ -1,0 +1,9 @@
+---
+- name: Deploy docker img
+  hosts: localhost
+  remote_user: root
+  tasks:
+    - name: Pull spe_calculator image
+      docker_image:
+        name: shathir984/spe_calculator
+        source: pull
