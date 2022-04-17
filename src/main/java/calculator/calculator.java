@@ -16,48 +16,57 @@ public class calculator {
     public static void main(String[] args) {
         calculator cal = new calculator();
         Scanner scanner = new Scanner(System.in);
-        double num1, num2;
+        double in1, in2;
 
         do{
             System.out.println("Calcuator");
-            System.out.println("Available functions\n1 - Square Root of x\n2 - Factorial of x\n3 - Natural Log of x\n4 - x Power b\nAny other number to exit");
-            int fun;
+            System.out.println("Available functions\n1 - Square Root of x\n2 - Factorial of x\n3 - Natural Log of x\n4 - x Power b\n5-multiplication\nAny other number to exit");
+            int fun_input;
 
             try{
-                fun = scanner.nextInt();
+                fun_input = scanner.nextInt();
             } catch (InputMismatchException error) {
                 return;
             }
 
-            if (fun < 1 || fun > 4){
+            if (fun_input < 1 || fun_input > 5){
                 return;
             }
 
             try{
                 System.out.println("Enter x");
-                num1 = scanner.nextDouble();
+                in1 = scanner.nextDouble();
             } catch (InputMismatchException error) {
                 return;
             }
 
-            switch(fun){
+            switch(fun_input){
                 case 1:
-                    System.out.println("Square root of x = " + calculator.sqt(num1));
+                    System.out.println("Square root of x = " + calculator.sqt(in1));
                     break;
                 case 2:
-                    System.out.println("Factorial of x =" + calculator.factorial(num1));
+                    System.out.println("Factorial of x =" + calculator.factorial(in1));
                     break;
                 case 3:
-                    System.out.println("Natural log of x =" + calculator.log(num1));
+                    System.out.println("Natural log of x =" + calculator.log(in1));
                     break;
                 case 4:
                     try {
                         System.out.print("Enter b");
-                        num2 = scanner.nextDouble();
+                        in2 = scanner.nextDouble();
                     } catch (InputMismatchException error){
                         return;
                     }
-                    System.out.println("x power b = " + calculator.power(num1, num2));
+                    System.out.println("x power b = " + calculator.power(in1, in2));
+                    break;
+                case 5:
+                    try {
+                        System.out.print("Enter b");
+                        in2 = scanner.nextDouble();
+                    } catch (InputMismatchException error){
+                        return;
+                    }
+                    System.out.println("x product b = " + calculator.multiply(in1, in2));
                     break;
                 default:
                     System.out.print("Closing");
@@ -68,59 +77,65 @@ public class calculator {
 
 
     public static double sqt(double i){
-        double temp = 0;
+        double ans = 0;
         try {
             logger.info("[SQRT] - " + i);
             if (i < 0) {
-                temp = Double.NaN;
-                throw new ArithmeticException("Cannot find square root of -ve numbers");
+                ans = Double.NaN;
+                throw new ArithmeticException("square root of -ve numbers is invalid");
             } else {
-                temp = Math.sqrt(i);
+                ans = Math.sqrt(i);
             }
         } catch (ArithmeticException error){
-            logger.error("[EXCEPTION - SQRT] - Cannot find sqrt of -ve numbers");
+            logger.error("[EXCEPTION - SQRT] - sqrt of -ve numbers is invalid");
         } finally {
-            logger.info("[RESULT - SQRT] = " + temp);
+            logger.info("[RESULT - SQRT] = " + ans);
         }
-        return temp;
+        return ans;
     }
 
     public static double factorial(double i){
         logger.info("[FACTORIAL] - " + i );
-        double temp = 1.0;
+        double ans = 1.0;
         for (int t = 1; t<= i; t++){
-            temp *= t;
+            ans *= t;
         }
-        logger.info("[RESULT - FACTORIAL] = " + temp);
-        return temp;
+        logger.info("[RESULT - FACTORIAL] = " + ans);
+        return ans;
     }
     public static double log(double i){
-        Double temp = 0.0;
+        Double ans = 0.0;
         try {
             logger.info("[LOG] - " + i);
             if (i < 0){
-                temp = Double.NaN;
-                throw new ArithmeticException("Cannot find log of negative numbers");
+                ans = Double.NaN;
+                throw new ArithmeticException("log of negative numbers is invalid");
             }
             else if (i == 0){
-                temp = Double.NEGATIVE_INFINITY;
+                ans = Double.NEGATIVE_INFINITY;
                 throw new ArithmeticException("Log of 0 is negative infinity");
             }
             else {
-                temp = Math.log(i);
+                ans = Math.log(i);
             }
         } catch (ArithmeticException error){
-            logger.error("[EXCEPTION - log] - inout is less than or equal to zero");
+            logger.error("[EXCEPTION - log] - input is less than or equal to zero");
         } finally {
-            logger.info("[RESULT - LOG] = " + temp);
+            logger.info("[RESULT - LOG] = " + ans);
         }
-        return temp;
+        return ans;
     }
     public static double power(double i, double j){
         logger.info("[POWER] - " + i + ", " + j );
-        double temp = Math.pow(i,j);
-        logger.info("[RESULT - POWER] = " + temp);
-        return temp;
+        double ans = Math.pow(i,j);
+        logger.info("[RESULT - POWER] = " + ans);
+        return ans;
+    }
+    public static double multiply(double i, double j){
+        logger.info("[Product] - " + i + ", " + j );
+        double ans = i*j;
+        logger.info("[RESULT - Product] = " + ans);
+        return ans;
     }
 
 }

@@ -7,53 +7,67 @@ public class CalculatorTest {
     calculator calc = new calculator();
 
     @Test
-    public void squarerootTruePositive(){
-        assertEquals("Square root of an int - True Positive",2, calc.sqt(4), DELTA);
-        assertEquals("Square root of a double- True Positive",1.8708286933869707, calc.sqt(3.5), DELTA);
+    public void squarerootPositive(){
+        assertEquals("Square root of an int - Positive",8, calc.sqt(64), DELTA);
+        assertEquals("Square root of a double- Positive",2.280350850198276, calc.sqt(5.2), DELTA);
     }
 
     @Test
-    public void squarerootFalsePositive(){
-        assertNotEquals("Square root of an int - False Positive",2,calc.sqt(5), DELTA);
-        assertNotEquals("Square root of a Double- False Positive", 5.7, calc.sqt(30),DELTA);
+    public void squarerootNegative(){
+        assertNotEquals("Square root of an int - Negative",2,calc.sqt(10), DELTA);
+        assertNotEquals("Square root of a Double- Negative", 5.7, calc.sqt(37),DELTA);
     }
 
     @Test
-    public void factorialTruePositive(){
-        assertEquals("Factorial of an int - True Positive",2,calc.factorial(2), DELTA);
-        assertEquals("Factorial of a double - True Positive",24,calc.factorial(4.0), DELTA);
+    public void factorialPositive(){
+        assertEquals("Factorial of an int - Positive",120,calc.factorial(5), DELTA);
+        assertEquals("Factorial of a double - Positive",5040,calc.factorial(7.0), DELTA);
     }
 
     @Test
-    public void factorialFalsePositive(){
-        assertNotEquals("Factorial of an int - False Positive",120,calc.factorial(6), DELTA);
-        assertNotEquals("Factorial of a double - False Positive",720,calc.factorial(4.0), DELTA);
+    public void factorialNegative(){
+        assertNotEquals("Factorial of an int - Negative",120,calc.factorial(9), DELTA);
+        assertNotEquals("Factorial of a double - Negative",720,calc.factorial(7.0), DELTA);
     }
 
     @Test
-    public void logTruePositive(){
-        assertEquals("Log- True Positive",1.6094379124341003,calc.log(5),DELTA );
-        assertEquals("Log - TruePositive",4.04305126783455,calc.log(57),DELTA );
-        assertEquals("Log - True Positive", 0, calc.log(1), DELTA );
+    public void logPositive(){
+        assertEquals("Log- Positive",1.9459101490553132,calc.log(7),DELTA );
+        assertEquals("Log - Positive",1.3862943611198906,calc.log(4),DELTA );
+        assertEquals("Log - Positive", 0, calc.log(1), DELTA );
     }
 
     @Test
-    public void logFalsePositive(){
-        assertNotEquals("Log- True Positive",1,calc.log(1),DELTA );
-        assertNotEquals("Log - TruePositive",1,calc.log(10),DELTA );
+    public void logNegative(){
+        assertNotEquals("Log- Positive",1,calc.log(10),DELTA );
+        assertNotEquals("Log - Positive",1,calc.log(23),DELTA );
     }
 
     @Test
-    public void powerTruePositive(){
-        assertEquals("Power of two int - True Positive",8,calc.power(2,3),DELTA);
-        assertEquals("Power of an int and double - True Positive",12.166999999999998,calc.power(2.3,3),DELTA);
-        assertEquals("Power of two doubles - True Positive",18.45216910555504,calc.power(2.3,3.5),DELTA);
+    public void powerPositive(){
+        assertEquals("Power of two int - Positive",16,calc.power(2,4),DELTA);
+        assertEquals("Power of an int and double - Positive",29.791000000000004,calc.power(3.1,3),DELTA);
+        assertEquals("Power of two doubles - Positive",65.28280246512092,calc.power(3.3,3.5),DELTA);
     }
 
     @Test
-    public void powerFalsePositive(){
-        assertNotEquals("Power of two doubles - True Positive",-1,calc.power(1,0),DELTA);
-        assertNotEquals("Power of an int and double - False Positive",9,calc.power(-2.3,3),DELTA);
-        assertNotEquals("Power of two int - False Positive",-1,calc.power(-1,2),DELTA);
+    public void powerNegative(){
+        assertNotEquals("Power of two doubles - Positive",-1,calc.power(1,3),DELTA);
+        assertNotEquals("Power of an int and double - Negative",9,calc.power(-3.3,3),DELTA);
+        assertNotEquals("Power of two int - Negative",-1,calc.power(-7,10),DELTA);
+    }
+    
+        @Test
+    public void ProductPositive(){
+        assertEquals("Product of two int - Positive",8,calc.multiply(2,4),DELTA);
+        assertEquals("Product of an int and double - Positive",6.2,calc.multiply(3.1,2),DELTA);
+        assertEquals("Product of two doubles - Positive",1.44,calc.multiply(1.2,1.2),DELTA);
+    }
+
+    @Test
+    public void ProductNegative(){
+        assertNotEquals("Product of two doubles - Positive",-1,calc.multiply(1,3),DELTA);
+        assertNotEquals("Product of an int and double - Negative",9,calc.multiply(-3.3,3),DELTA);
+        assertNotEquals("Product of two int - Negative",-1,calc.multiply(-7,10),DELTA);
     }
 }
