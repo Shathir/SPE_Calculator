@@ -1,6 +1,6 @@
 ---
 - name: Deploy docker img
-  hosts: localhost
+  hosts: suchith
   remote_user: root
   tasks:
     - name: Pull spe_calculator image
